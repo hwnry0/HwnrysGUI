@@ -144,6 +144,10 @@ local function updateGunCounter()
         }
         game:GetService("ReplicatedStorage").RemoteFunction:InvokeServer(unpack(args))
 
+        -- Update the GunCounter value
+        gunCounterValue = gunCounterValue + 1
+        GunCounter.Text = tostring(gunCounterValue)
+
         -- Start the cooldown timer
         local startTime = tick()
         local elapsedTime = 0
