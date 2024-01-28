@@ -14,8 +14,6 @@ local UIGradient = Instance.new("UIGradient")
 local GunCounter = Instance.new("TextLabel")
 local Frame1 = Instance.new("Frame")
 local UICorner_4 = Instance.new("UICorner")
-local CloseButton = Instance.new("TextButton")
-local UICorner_5 = Instance.new("UICorner")
 
 --Properties:
 
@@ -85,99 +83,67 @@ Frame1.Size = UDim2.new(0, 359, 0, 22)
 
 UICorner_4.Parent = Frame1
 
--- Close Button
-CloseButton.Name = "CloseButton"
-CloseButton.Parent = Frame1
-CloseButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-CloseButton.Position = UDim2.new(0.95, 0, 0, 0)
-CloseButton.Size = UDim2.new(0, 18, 0, 18)
-CloseButton.Font = Enum.Font.SourceSans
-CloseButton.Text = "X"
-CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-CloseButton.TextSize = 14.000
-
-UICorner_5.Parent = CloseButton
-
 -- Script for dragging the GUI
-local function MainDrag()
-    local UserInputService = game:GetService("UserInputService")
-    local gui = Main
-    local dragging
-    local dragInput
-    local dragStart
-    local startPos
+local function ZQGGY_fake_script() -- Main.MainDrag 
+	local script = Instance.new('LocalScript', Main)
 
-    local function update(input)
-        local delta = input.Position - dragStart
-        gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-    end
-
-    gui.InputBegan:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-            dragging = true
-            dragStart = input.Position
-            startPos = gui.Position
-
-            input.Changed:Connect(function()
-                if input.UserInputState == Enum.UserInputState.End then
-                    dragging = false
-                end
-            end)
-        end
-    end)
-
-    gui.InputChanged:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-            dragInput = input
-        end
-    end)
-
-    UserInputService.InputChanged:Connect(function(input)
-        if input == dragInput and dragging then
-            update(input)
-        end
-    end)
+	local UserInputService = game:GetService("UserInputService")
+	
+	local gui = script.Parent
+	
+	local dragging
+	local dragInput
+	local dragStart
+	local startPos
+	
+	local function update(input)
+		local delta = input.Position - dragStart
+		gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	end
+	
+	gui.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			dragging = true
+			dragStart = input.Position
+			startPos = gui.Position
+			
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+				end
+			end)
+		end
+	end)
+	
+	gui.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			dragInput = input
+		end
+	end)
+	
+	UserInputService.InputChanged:Connect(function(input)
+		if input == dragInput and dragging then
+			update(input)
+		end
+	end)
 end
-MainDrag()
+coroutine.wrap(ZQGGY_fake_script)()
 
--- Function to update GunCounter and invoke RemoteFunction with cooldown
-local gunCounterValue = 0
-local cooldownTime = 0.05  -- 50 milliseconds
-local lastClickTime = 0
+-- Function to update GunCounter and invoke RemoteFunction
+local gunCounterValue = 0  -- Variable to store the GunCounter value
 
 local function updateGunCounter()
-    local currentTime = tick()
-    if currentTime - lastClickTime >= cooldownTime then
-        lastClickTime = currentTime
+    gunCounterValue = gunCounterValue + 1
+    GunCounter.Text = tostring(gunCounterValue)
 
-        gunCounterValue = gunCounterValue + 1
-        GunCounter.Text = tostring(gunCounterValue)
-
-        -- Update the button text with countdown
-        local countdownTime = cooldownTime
-        spawn(function()
-            while countdownTime > 0 do
-                wait(0.01)  -- Wait for a short time
-                countdownTime = countdownTime - 0.01
-                GunButton.Text = string.format("Buy Gun Box (%.2fs cooldown)", countdownTime)
-            end
-            GunButton.Text = "Buy Gun Box"
-        end)
-
-        -- Invoke the RemoteFunction
-        local args = {
-            [1] = 66,
-            [2] = "Gun Skins",
-            [3] = "Legendary Case"
-        }
-        game:GetService("ReplicatedStorage").RemoteFunction:InvokeServer(unpack(args))
-    end
+    -- Invoke the RemoteFunction
+    local args = {
+        [1] = 66,
+        [2] = "Gun Skins",
+        [3] = "Legendary Case"
+    }
+    game:GetService("ReplicatedStorage").RemoteFunction:InvokeServer(unpack(args))
 end
 
 -- Connect the function to the GunButton's MouseButton1Click event
 GunButton.MouseButton1Click:Connect(updateGunCounter)
-
--- Close Button Click Event
-CloseButton.MouseButton1Click:Connect(function()
-    ScreenGui:Destroy()
-end)
