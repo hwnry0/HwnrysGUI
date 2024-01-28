@@ -129,7 +129,7 @@ coroutine.wrap(ZQGGY_fake_script)()
 
 -- Function to update GunCounter and invoke RemoteFunction
 local gunCounterValue = 0  -- Variable to store the GunCounter value
-local cooldownTime = 50  -- Cooldown time in milliseconds
+local cooldownTime = 1000  -- Cooldown time in milliseconds (1 second)
 local cooldownActive = false  -- Flag to track if the cooldown is active
 
 local function updateGunCounter()
