@@ -14,7 +14,7 @@ local GunCounter = Instance.new("TextLabel")
 local Frame1 = Instance.new("Frame")
 local UICorner_4 = Instance.new("UICorner")
 
---Properties:
+-- Properties:
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
@@ -152,10 +152,10 @@ local function updateGunCounter()
         local startTime = tick()
         local elapsedTime = 0
 
-        while elapsedTime < cooldownTime / 1000 do
-            elapsedTime = tick() - startTime
-            local remainingTime = math.ceil((cooldownTime / 1000) - elapsedTime)
-            GunButton.Text = "Cooldown: " .. remainingTime .. "s"
+        while elapsedTime < cooldownTime do
+            elapsedTime = (tick() - startTime) * 1000  -- Convert to milliseconds
+            local remainingTime = math.ceil((cooldownTime - elapsedTime) / 1000)
+            GunButton.Text = "Cooldown: " .. remainingTime .. "ms"
 
             wait(0.1)  -- Adjust the interval based on the desired refresh rate
         end
