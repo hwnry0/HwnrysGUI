@@ -129,20 +129,34 @@ local function ZQGGY_fake_script() -- Main.MainDrag
 end
 coroutine.wrap(ZQGGY_fake_script)()
 
--- Function to update GunCounter and invoke RemoteFunction
+-- Function to update GunCounter and invoke RemoteFunction with cooldown
 local gunCounterValue = 0  -- Variable to store the GunCounter value
+local cooldownTime = 1.2  -- Cooldown time in seconds
+local lastClickTime = 0  -- Time of the last click
 
 local function updateGunCounter()
-    gunCounterValue = gunCounterValue + 1
-    GunCounter.Text = tostring(gunCounterValue)
+    local currentTime = tick()
+    if currentTime - lastClickTime >= cooldownTime then
+        lastClickTime = currentTime
 
-    -- Invoke the RemoteFunction
-    local args = {
-        [1] = 66,
-        [2] = "Gun Skins",
-        [3] = "Legendary Case"
-    }
-    game:GetService("ReplicatedStorage").RemoteFunction:InvokeServer(unpack(args))
+        gunCounterValue = gunCounterValue + 1
+        GunCounter.Text = tostring(gunCounterValue)
+
+        -- Update the button text with cooldown
+        GunButton.Text = "Buy Gun Box (" .. tostring(cooldownTime) .. "s cooldown)"
+
+        -- Invoke the RemoteFunction
+        local args = {
+            [1] = 66,
+            [2] = "Gun Skins",
+            [3] = "Legendary Case"
+        }
+        game:GetService("ReplicatedStorage").RemoteFunction:InvokeServer(unpack(args))
+
+        -- Reset the button text after cooldown
+        wait(cooldownTime)
+        GunButton.Text = "Buy Gun Box"
+    end
 end
 
 -- Connect the function to the GunButton's MouseButton1Click event
