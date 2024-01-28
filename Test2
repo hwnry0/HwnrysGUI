@@ -2,13 +2,31 @@
 -- Version: 3.2
 
 -- Instances:
-
 local ScreenGui = Instance.new("ScreenGui")
+local Main = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local MainFrame = Instance.new("Frame")
+local UICorner_2 = Instance.new("UICorner")
+local UIGradient = Instance.new("UIGradient")
+local Mainbackground = Instance.new("ImageLabel")
+local UICorner_3 = Instance.new("UICorner")
+local Frame1 = Instance.new("Frame")
+local UICorner_4 = Instance.new("UICorner")
+local CraftButton = Instance.new("TextButton")
+local UICorner_5 = Instance.new("UICorner")
+local UIGradient_2 = Instance.new("UIGradient")
+local GunButton = Instance.new("TextButton")
+local UICorner_6 = Instance.new("UICorner")
+local UIGradient_3 = Instance.new("UIGradient")
+local GunCounter = Instance.new("TextLabel")
+local CraftCounter = Instance.new("TextLabel")
+local OpenCloseButton = Instance.new("ImageButton")
+
+--Properties:
+
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
--- Main Frame
-local Main = Instance.new("Frame")
 Main.Name = "Main"
 Main.Parent = ScreenGui
 Main.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
@@ -18,11 +36,8 @@ Main.Position = UDim2.new(0.74641484, 0, 0.151278645, 0)
 Main.Size = UDim2.new(0, 359, 0, 22)
 Main.Visible = false
 
-local UICorner = Instance.new("UICorner")
 UICorner.Parent = Main
 
--- Main Frame Background
-local MainFrame = Instance.new("Frame")
 MainFrame.Name = "MainFrame"
 MainFrame.Parent = Main
 MainFrame.BackgroundColor3 = Color3.fromRGB(84, 84, 84)
@@ -31,15 +46,10 @@ MainFrame.BorderSizePixel = 0
 MainFrame.Position = UDim2.new(-0.00222106767, 0, -0.00271190307, 0)
 MainFrame.Size = UDim2.new(0, 359, 0, 208)
 
-local UICorner_2 = Instance.new("UICorner")
 UICorner_2.Parent = MainFrame
 
--- Main Frame Background Gradient
-local UIGradient = Instance.new("UIGradient")
 UIGradient.Parent = MainFrame
 
--- Background Image
-local Mainbackground = Instance.new("ImageLabel")
 Mainbackground.Name = "Mainbackground"
 Mainbackground.Parent = MainFrame
 Mainbackground.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -49,11 +59,8 @@ Mainbackground.Position = UDim2.new(0, 0, 0.057692308, 0)
 Mainbackground.Size = UDim2.new(0, 359, 0, 195)
 Mainbackground.Image = "http://www.roblox.com/asset/?id=16156885812"
 
-local UICorner_3 = Instance.new("UICorner")
 UICorner_3.Parent = Mainbackground
 
--- Frame1 inside Background
-local Frame1 = Instance.new("Frame")
 Frame1.Name = "Frame1"
 Frame1.Parent = Mainbackground
 Frame1.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
@@ -62,11 +69,8 @@ Frame1.BorderSizePixel = 0
 Frame1.Position = UDim2.new(-0.00128530862, 0, -0.0615708567, 0)
 Frame1.Size = UDim2.new(0, 359, 0, 22)
 
-local UICorner_4 = Instance.new("UICorner")
 UICorner_4.Parent = Frame1
 
--- CraftButton
-local CraftButton = Instance.new("TextButton")
 CraftButton.Name = "Craft Button"
 CraftButton.Parent = Mainbackground
 CraftButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -81,15 +85,11 @@ CraftButton.TextScaled = true
 CraftButton.TextSize = 14.000
 CraftButton.TextWrapped = true
 
-local UICorner_5 = Instance.new("UICorner")
 UICorner_5.Parent = CraftButton
 
-local UIGradient_2 = Instance.new("UIGradient")
 UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(70, 29, 140)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(85, 0, 255))}
 UIGradient_2.Parent = CraftButton
 
--- GunButton
-local GunButton = Instance.new("TextButton")
 GunButton.Name = "GunButton"
 GunButton.Parent = Mainbackground
 GunButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -104,15 +104,11 @@ GunButton.TextScaled = true
 GunButton.TextSize = 14.000
 GunButton.TextWrapped = true
 
-local UICorner_6 = Instance.new("UICorner")
 UICorner_6.Parent = GunButton
 
-local UIGradient_3 = Instance.new("UIGradient")
 UIGradient_3.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(70, 29, 140)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(85, 0, 255))}
 UIGradient_3.Parent = GunButton
 
--- GunCounter
-local GunCounter = Instance.new("TextLabel")
 GunCounter.Name = "GunCounter"
 GunCounter.Parent = Mainbackground
 GunCounter.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -128,15 +124,13 @@ GunCounter.TextScaled = true
 GunCounter.TextSize = 14.000
 GunCounter.TextWrapped = true
 
--- CraftCounter
-local CraftCounter = Instance.new("TextLabel")
 CraftCounter.Name = "CraftCounter"
 CraftCounter.Parent = Mainbackground
 CraftCounter.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 CraftCounter.BackgroundTransparency = 1.000
 CraftCounter.BorderColor3 = Color3.fromRGB(0, 0, 0)
 CraftCounter.BorderSizePixel = 0
-CraftCounter.Position = UDim2.new(0.261838436, 0, 0.170458868, 0)
+CraftCounter.Position = UDim2.new(0.261838436, 0, 0.174393281, 0)
 CraftCounter.Size = UDim2.new(0, 70, 0, 50)
 CraftCounter.Font = Enum.Font.LuckiestGuy
 CraftCounter.Text = "-0"
@@ -145,51 +139,10 @@ CraftCounter.TextScaled = true
 CraftCounter.TextSize = 14.000
 CraftCounter.TextWrapped = true
 
--- Open/Close Button
-local OpenCloseButton = Instance.new("ImageButton")
-OpenCloseButton.Name = "Open/Close Button"
+OpenCloseButton.Name = "OpenCloseButton"
 OpenCloseButton.Parent = ScreenGui
 OpenCloseButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 OpenCloseButton.BackgroundTransparency = 1.000
-OpenCloseButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-OpenCloseButton.BorderSizePixel = 0
-OpenCloseButton.Position = UDim2.new(0.482736886, 0, 0.472587109, 0)
-OpenCloseButton.Size = UDim2.new(0, 62, 0, 62)
-OpenCloseButton.Image = "http://www.roblox.com/asset/?id=16156794025"
-
--- MainDrag Script
-local function MainDragScript()
-    -- ... (same as before)
-end
-
-coroutine.wrap(MainDragScript)()
-
--- Open/Close Button Script
-local function OpenCloseButtonScript()
-    -- ... (same as before)
-end
-
-coroutine.wrap(OpenCloseButtonScript)()
-
--- DragOpenFrame Script
-local function DragOpenFrameScript()
-    -- ... (same as before)
-end
-
-coroutine.wrap(DragOpenFrameScript)()
-
--- Function to update GunCounter and invoke RemoteFunction
-local function updateGunCounter()
-    -- ... (same as before)
-end
-
--- Connect the function to the GunButton's MouseButton1Click event
-GunButton.MouseButton1Click:Connect(updateGunCounter)
-
--- Function to update CraftCounter and invoke RemoteEvent for crafting Ruby skin
-local function updateCraftCounter()
-    -- ... (same as before)
-end
-
--- Connect the function to the CraftButton's MouseButton1Click event
-CraftButton.MouseButton1Click:Connect(updateCraftCounter)
+OpenCloseButton.Position = UDim2.new(0.926745355, 0, 0.210359335, 0)
+OpenCloseButton.Size = UDim2.new(0, 60, 0, 20)
+OpenCloseButton.Image = "http://www.roblox.com/asset/?id=156547640"
