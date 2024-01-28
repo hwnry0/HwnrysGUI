@@ -2,31 +2,12 @@
 -- Version: 3.2
 
 -- Instances:
+
 local ScreenGui = Instance.new("ScreenGui")
-local Main = Instance.new("Frame")
-local UICorner = Instance.new("UICorner")
-local MainFrame = Instance.new("Frame")
-local UICorner_2 = Instance.new("UICorner")
-local UIGradient = Instance.new("UIGradient")
-local Mainbackground = Instance.new("ImageLabel")
-local UICorner_3 = Instance.new("UICorner")
-local Frame1 = Instance.new("Frame")
-local UICorner_4 = Instance.new("UICorner")
-local CraftButton = Instance.new("TextButton")
-local UICorner_5 = Instance.new("UICorner")
-local UIGradient_2 = Instance.new("UIGradient")
-local GunButton = Instance.new("TextButton")
-local UICorner_6 = Instance.new("UICorner")
-local UIGradient_3 = Instance.new("UIGradient")
-local GunCounter = Instance.new("TextLabel")
-local CraftCounter = Instance.new("TextLabel")
-local OpenCloseButton = Instance.new("ImageButton")
-
---Properties:
-
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
+local Main = Instance.new("Frame")
 Main.Name = "Main"
 Main.Parent = ScreenGui
 Main.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
@@ -36,8 +17,10 @@ Main.Position = UDim2.new(0.74641484, 0, 0.151278645, 0)
 Main.Size = UDim2.new(0, 359, 0, 22)
 Main.Visible = false
 
+local UICorner = Instance.new("UICorner")
 UICorner.Parent = Main
 
+local MainFrame = Instance.new("Frame")
 MainFrame.Name = "MainFrame"
 MainFrame.Parent = Main
 MainFrame.BackgroundColor3 = Color3.fromRGB(84, 84, 84)
@@ -46,10 +29,13 @@ MainFrame.BorderSizePixel = 0
 MainFrame.Position = UDim2.new(-0.00222106767, 0, -0.00271190307, 0)
 MainFrame.Size = UDim2.new(0, 359, 0, 208)
 
+local UICorner_2 = Instance.new("UICorner")
 UICorner_2.Parent = MainFrame
 
+local UIGradient = Instance.new("UIGradient")
 UIGradient.Parent = MainFrame
 
+local Mainbackground = Instance.new("ImageLabel")
 Mainbackground.Name = "Mainbackground"
 Mainbackground.Parent = MainFrame
 Mainbackground.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -59,8 +45,10 @@ Mainbackground.Position = UDim2.new(0, 0, 0.057692308, 0)
 Mainbackground.Size = UDim2.new(0, 359, 0, 195)
 Mainbackground.Image = "http://www.roblox.com/asset/?id=16156885812"
 
+local UICorner_3 = Instance.new("UICorner")
 UICorner_3.Parent = Mainbackground
 
+local Frame1 = Instance.new("Frame")
 Frame1.Name = "Frame1"
 Frame1.Parent = Mainbackground
 Frame1.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
@@ -69,8 +57,10 @@ Frame1.BorderSizePixel = 0
 Frame1.Position = UDim2.new(-0.00128530862, 0, -0.0615708567, 0)
 Frame1.Size = UDim2.new(0, 359, 0, 22)
 
+local UICorner_4 = Instance.new("UICorner")
 UICorner_4.Parent = Frame1
 
+local CraftButton = Instance.new("TextButton")
 CraftButton.Name = "Craft Button"
 CraftButton.Parent = Mainbackground
 CraftButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -85,11 +75,14 @@ CraftButton.TextScaled = true
 CraftButton.TextSize = 14.000
 CraftButton.TextWrapped = true
 
+local UICorner_5 = Instance.new("UICorner")
 UICorner_5.Parent = CraftButton
 
+local UIGradient_2 = Instance.new("UIGradient")
 UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(70, 29, 140)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(85, 0, 255))}
 UIGradient_2.Parent = CraftButton
 
+local GunButton = Instance.new("TextButton")
 GunButton.Name = "GunButton"
 GunButton.Parent = Mainbackground
 GunButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -104,11 +97,14 @@ GunButton.TextScaled = true
 GunButton.TextSize = 14.000
 GunButton.TextWrapped = true
 
+local UICorner_6 = Instance.new("UICorner")
 UICorner_6.Parent = GunButton
 
+local UIGradient_3 = Instance.new("UIGradient")
 UIGradient_3.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(70, 29, 140)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(85, 0, 255))}
 UIGradient_3.Parent = GunButton
 
+local GunCounter = Instance.new("TextLabel")
 GunCounter.Name = "GunCounter"
 GunCounter.Parent = Mainbackground
 GunCounter.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -124,13 +120,14 @@ GunCounter.TextScaled = true
 GunCounter.TextSize = 14.000
 GunCounter.TextWrapped = true
 
+local CraftCounter = Instance.new("TextLabel")
 CraftCounter.Name = "CraftCounter"
 CraftCounter.Parent = Mainbackground
 CraftCounter.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 CraftCounter.BackgroundTransparency = 1.000
 CraftCounter.BorderColor3 = Color3.fromRGB(0, 0, 0)
 CraftCounter.BorderSizePixel = 0
-CraftCounter.Position = UDim2.new(0.261838436, 0, 0.174393281, 0)
+CraftCounter.Position = UDim2.new(0.261838436, 0, 0.170458868, 0)
 CraftCounter.Size = UDim2.new(0, 70, 0, 50)
 CraftCounter.Font = Enum.Font.LuckiestGuy
 CraftCounter.Text = "-0"
@@ -139,10 +136,85 @@ CraftCounter.TextScaled = true
 CraftCounter.TextSize = 14.000
 CraftCounter.TextWrapped = true
 
-OpenCloseButton.Name = "OpenCloseButton"
+local OpenCloseButton = Instance.new("ImageButton")
+OpenCloseButton.Name = "Open/Close Button"
 OpenCloseButton.Parent = ScreenGui
 OpenCloseButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 OpenCloseButton.BackgroundTransparency = 1.000
-OpenCloseButton.Position = UDim2.new(0.926745355, 0, 0.210359335, 0)
-OpenCloseButton.Size = UDim2.new(0, 60, 0, 20)
-OpenCloseButton.Image = "http://www.roblox.com/asset/?id=156547640"
+OpenCloseButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+OpenCloseButton.BorderSizePixel = 0
+OpenCloseButton.Position = UDim2.new(0.482736886, 0, 0.472587109, 0)
+OpenCloseButton.Size = UDim2.new(0, 62, 0, 62)
+OpenCloseButton.Image = "http://www.roblox.com/asset/?id=16156794025"
+
+-- Scripts:
+
+-- UI Dragging Script
+local function MainDragScript()
+    local script = Instance.new('LocalScript', Main)
+    local UserInputService = game:GetService("UserInputService")
+    local runService = (game:GetService("RunService"));
+
+    local gui = script.Parent
+
+    local dragging
+    local dragInput
+    local dragStart
+    local startPos
+
+    function Lerp(a, b, m)
+        return a + (b - a) * m
+    end;
+
+    local lastMousePos
+    local lastGoalPos
+    local DRAG_SPEED = 8
+
+    function Update(dt)
+        if not (startPos) then return end;
+        if not (dragging) and (lastGoalPos) then
+            gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, lastGoalPos.X.Offset, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, lastGoalPos.Y.Offset, dt * DRAG_SPEED))
+            return 
+        end;
+
+        local delta = (lastMousePos - UserInputService:GetMouseLocation())
+        local xGoal = (startPos.X.Offset - delta.X);
+        local yGoal = (startPos.Y.Offset - delta.Y);
+        lastGoalPos = UDim2.new(startPos.X.Scale, xGoal, startPos.Y.Scale, yGoal)
+        gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, xGoal, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, yGoal, dt * DRAG_SPEED))
+    end;
+
+    gui.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            dragStart = input.Position
+            startPos = gui.Position
+            lastMousePos = UserInputService:GetMouseLocation()
+
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragging = false
+                end
+            end)
+        end
+    end)
+
+    gui.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            dragInput = input
+        end
+    end)
+
+    runService.Heartbeat:Connect(Update)
+end
+coroutine.wrap(MainDragScript)()
+
+-- Open/Close Button Script
+local function OpenCloseButtonScript()
+    local script = Instance.new('LocalScript', OpenCloseButton)
+
+    script.Parent.MouseButton1Click:Connect(function()
+        script.Parent.Parent.Main.Visible = not script.Parent.Parent.Main.Visible
+    end)
+end
+coroutine.wrap(OpenCloseButtonScript)()
