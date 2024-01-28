@@ -162,4 +162,4 @@ local function updateGunCounter()
 end
 
 -- Connect the function to the GunButton's MouseButton1Click event
-GunButton.MouseButton1Click:Connect(updateGun
+GunButton.MouseButton1Click:Connect(updateGunCounter)
