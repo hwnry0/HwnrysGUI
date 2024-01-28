@@ -1,3 +1,6 @@
+-- Gui to Lua
+-- Version: 3.2
+
 -- Instances:
 
 local ScreenGui = Instance.new("ScreenGui")
@@ -82,47 +85,47 @@ UICorner_4.Parent = Frame1
 
 -- Script for dragging the GUI
 local function ZQGGY_fake_script() -- Main.MainDrag 
-    local script = Instance.new('LocalScript', Main)
+	local script = Instance.new('LocalScript', Main)
 
-    local UserInputService = game:GetService("UserInputService")
-
-    local gui = script.Parent
-
-    local dragging
-    local dragInput
-    local dragStart
-    local startPos
-
-    local function update(input)
-        local delta = input.Position - dragStart
-        gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-    end
-
-    gui.InputBegan:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-            dragging = true
-            dragStart = input.Position
-            startPos = gui.Position
-
-            input.Changed:Connect(function()
-                if input.UserInputState == Enum.UserInputState.End then
-                    dragging = false
-                end
-            end)
-        end
-    end)
-
-    gui.InputChanged:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-            dragInput = input
-        end
-    end)
-
-    UserInputService.InputChanged:Connect(function(input)
-        if input == dragInput and dragging then
-            update(input)
-        end
-    end)
+	local UserInputService = game:GetService("UserInputService")
+	
+	local gui = script.Parent
+	
+	local dragging
+	local dragInput
+	local dragStart
+	local startPos
+	
+	local function update(input)
+		local delta = input.Position - dragStart
+		gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	end
+	
+	gui.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			dragging = true
+			dragStart = input.Position
+			startPos = gui.Position
+			
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+				end
+			end)
+		end
+	end)
+	
+	gui.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			dragInput = input
+		end
+	end)
+	
+	UserInputService.InputChanged:Connect(function(input)
+		if input == dragInput and dragging then
+			update(input)
+		end
+	end)
 end
 coroutine.wrap(ZQGGY_fake_script)()
 
@@ -130,40 +133,16 @@ coroutine.wrap(ZQGGY_fake_script)()
 local gunCounterValue = 0  -- Variable to store the GunCounter value
 
 local function updateGunCounter()
-    -- Check if the timer is already running
-    if gunCounterValue == 0 then
-        -- Set the initial timer value (in seconds)
-        local timerValue = 5  -- Set this to the desired countdown time
-        local elapsedTime = 0
+    gunCounterValue = gunCounterValue + 1
+    GunCounter.Text = tostring(gunCounterValue)
 
-        -- Update the GunButton text with the countdown
-        GunButton.Text = string.format("Buy Gun Box (%.2f)", timerValue)
-
-        repeat
-            wait(0.05)
-            elapsedTime = elapsedTime + 0.05
-            local remainingTime = math.max(0, timerValue - elapsedTime)
-            GunButton.Text = string.format("Buy Gun Box (%.2f)", remainingTime)
-        until elapsedTime >= timerValue
-
-        -- After the countdown, update the GunCounter and invoke the RemoteFunction
-        gunCounterValue = gunCounterValue + 1
-        GunCounter.Text = tostring(gunCounterValue)
-
-        local args = {
-            [1] = 66,
-            [2] = "Gun Skins",
-            [3] = "Legendary Case"
-        }
-        game:GetService("ReplicatedStorage").RemoteFunction:InvokeServer(unpack(args))
-
-        -- Reset the GunButton text to its original state
-        GunButton.Text = "Buy Gun Box"
-    else
-        -- If the timer is still running, you can choose to handle it differently
-        -- For example, show a message or play a sound indicating that the user needs to wait
-        print("Please wait for the timer to finish.")
-    end
+    -- Invoke the RemoteFunction
+    local args = {
+        [1] = 66,
+        [2] = "Gun Skins",
+        [3] = "Legendary Case"
+    }
+    game:GetService("ReplicatedStorage").RemoteFunction:InvokeServer(unpack(args))
 end
 
 -- Connect the function to the GunButton's MouseButton1Click event
