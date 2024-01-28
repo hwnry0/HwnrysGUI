@@ -1,0 +1,165 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+local ScreenGui = Instance.new("ScreenGui")
+local Main = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local Frame = Instance.new("Frame")
+local UICorner_2 = Instance.new("UICorner")
+local GunButton = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local UIGradient = Instance.new("UIGradient")
+local GunCounter = Instance.new("TextLabel")
+local Frame1 = Instance.new("Frame")
+local UICorner_4 = Instance.new("UICorner")
+
+--Properties:
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Main.Name = "Main"
+Main.Parent = ScreenGui
+Main.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Main.BorderSizePixel = 0
+Main.Position = UDim2.new(0.536318958, 0, 0.32139951, 0)
+Main.Size = UDim2.new(0, 359, 0, 22)
+
+UICorner.Parent = Main
+
+Frame.Parent = Main
+Frame.BackgroundColor3 = Color3.fromRGB(84, 84, 84)
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(-0.00222106767, 0, -0.00271051587, 0)
+Frame.Size = UDim2.new(0, 359, 0, 109)
+
+UICorner_2.Parent = Frame
+
+GunButton.Name = "GunButton"
+GunButton.Parent = Frame
+GunButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+GunButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+GunButton.BorderSizePixel = 0
+GunButton.Position = UDim2.new(0.0334261842, 0, 0.467662573, 0)
+GunButton.Size = UDim2.new(0, 200, 0, 50)
+GunButton.Font = Enum.Font.Unknown
+GunButton.Text = "Buy Gun Box"
+GunButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+GunButton.TextScaled = true
+GunButton.TextSize = 14.000
+GunButton.TextWrapped = true
+
+UICorner_3.Parent = GunButton
+
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(70, 29, 140)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(85, 0, 255))}
+UIGradient.Parent = GunButton
+
+GunCounter.Name = "GunCounter"
+GunCounter.Parent = Frame
+GunCounter.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+GunCounter.BackgroundTransparency = 1.000
+GunCounter.BorderColor3 = Color3.fromRGB(0, 0, 0)
+GunCounter.BorderSizePixel = 0
+GunCounter.Position = UDim2.new(0.660167158, 0, 0.467662573, 0)
+GunCounter.Size = UDim2.new(0, 94, 0, 50)
+GunCounter.Font = Enum.Font.LuckiestGuy
+GunCounter.Text = "0"
+GunCounter.TextColor3 = Color3.fromRGB(0, 0, 0)
+GunCounter.TextScaled = true
+GunCounter.TextSize = 14.000
+GunCounter.TextWrapped = true
+
+Frame1.Name = "Frame1"
+Frame1.Parent = Frame
+Frame1.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+Frame1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame1.BorderSizePixel = 0
+Frame1.Position = UDim2.new(0.00150020677, 0, 0.000298456318, 0)
+Frame1.Size = UDim2.new(0, 359, 0, 22)
+
+UICorner_4.Parent = Frame1
+
+-- Script for dragging the GUI
+local function ZQGGY_fake_script() -- Main.MainDrag 
+    local script = Instance.new('LocalScript', Main)
+
+    local UserInputService = game:GetService("UserInputService")
+
+    local gui = script.Parent
+
+    local dragging
+    local dragInput
+    local dragStart
+    local startPos
+
+    local function update(input)
+        local delta = input.Position - dragStart
+        gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    end
+
+    gui.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            dragStart = input.Position
+            startPos = gui.Position
+
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragging = false
+                end
+            end)
+        end
+    end)
+
+    gui.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            dragInput = input
+        end
+    end)
+
+    UserInputService.InputChanged:Connect(function(input)
+        if input == dragInput and dragging then
+            update(input)
+        end
+    end)
+end
+coroutine.wrap(ZQGGY_fake_script)()
+
+-- Function to update GunCounter and invoke RemoteFunction
+local gunCounterValue = 0  -- Variable to store the GunCounter value
+local cooldownTime = 50  -- Cooldown time in milliseconds
+local cooldownActive = false  -- Flag to track if the cooldown is active
+
+local function updateGunCounter()
+    if not cooldownActive then
+        cooldownActive = true
+
+        -- Invoke the RemoteFunction
+        local args = {
+            [1] = 66,
+            [2] = "Gun Skins",
+            [3] = "Legendary Case"
+        }
+        game:GetService("ReplicatedStorage").RemoteFunction:InvokeServer(unpack(args))
+
+        -- Start the cooldown timer
+        local startTime = tick()
+        local elapsedTime = 0
+
+        while elapsedTime < cooldownTime / 1000 do
+            elapsedTime = tick() - startTime
+            local remainingTime = math.ceil((cooldownTime / 1000) - elapsedTime)
+            GunButton.Text = "Cooldown: " .. remainingTime .. "s"
+
+            wait(0.1)  -- Adjust the interval based on the desired refresh rate
+        end
+
+        cooldownActive = false
+        GunButton.Text = "Buy Gun Box"
+    end
+end
+
+-- Connect the function to the GunButton's MouseButton1Click event
+GunButton.MouseButton1Click:Connect(updateGun
