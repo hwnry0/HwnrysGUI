@@ -134,15 +134,17 @@ local function updateGunCounter()
     if gunCounterValue == 0 then
         -- Set the initial timer value (in seconds)
         local timerValue = 5  -- Set this to the desired countdown time
+        local elapsedTime = 0
 
-        -- Start the countdown loop
-        for i = timerValue, 0, -0.05 do  -- Decrease by 0.05 (50 milliseconds) per iteration
-            -- Update the GunButton text with the countdown
-            GunButton.Text = string.format("Buy Gun Box (%.2f)", i)
+        -- Update the GunButton text with the countdown
+        GunButton.Text = string.format("Buy Gun Box (%.2f)", timerValue)
 
-            -- Wait for 50 milliseconds
+        repeat
             wait(0.05)
-        end
+            elapsedTime = elapsedTime + 0.05
+            local remainingTime = math.max(0, timerValue - elapsedTime)
+            GunButton.Text = string.format("Buy Gun Box (%.2f)", remainingTime)
+        until elapsedTime >= timerValue
 
         -- After the countdown, update the GunCounter and invoke the RemoteFunction
         gunCounterValue = gunCounterValue + 1
