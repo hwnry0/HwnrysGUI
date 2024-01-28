@@ -158,4 +158,11 @@ local function updateGunCounter()
         -- Reset the GunButton text to its original state
         GunButton.Text = "Buy Gun Box"
     else
-        -- If the timer is still running, you can choose to
+        -- If the timer is still running, you can choose to handle it differently
+        -- For example, show a message or play a sound indicating that the user needs to wait
+        print("Please wait for the timer to finish.")
+    end
+end
+
+-- Connect the function to the GunButton's MouseButton1Click event
+GunButton.MouseButton1Click:Connect(updateGunCounter)
